@@ -86,7 +86,7 @@ SELECT * from Retail_Sales_Analysis
 	   and  sale_date < '2022-12-01'
 	   and quantity >= 4```
 
-**##3. **Write a SQL query to calculate the total sales (total_sale) for each category**:**
+**##3. ****Write a SQL query to calculate the total sales (total_sale) for each category****:**
 ```sql
  SELECT category,sum(total_sale) as totalam, 
                 count(*) as totallorder
