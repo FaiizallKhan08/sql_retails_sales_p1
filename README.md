@@ -4,7 +4,7 @@
 
 **Project Title**: Retail Sales Analysis  
 **Level**: Beginner  
-**Database**: `p1_retail_db`
+**Database**: `sql_projects`
 
 This project is designed to demonstrate SQL skills and techniques typically used by data analysts to explore, clean, and analyze retail sales data. The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries. This project is ideal for those who are starting their journey in data analysis and want to build a solid foundation in SQL.
 
@@ -86,14 +86,14 @@ SELECT * from Retail_Sales_Analysis
 	   and  sale_date < '2022-12-01'
 	   and quantity >= 4```
 
-##3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
+##3. **Write a SQL query to calculate the total sales (total_sale) for each category**:
 ```sql
  SELECT category,sum(total_sale) as totalam, 
                 count(*) as totallorder
                 from Retail_Sales_Analysis
                 group by category```
 
-4. **Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.**:
+4. **Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category**:
 ```sql
   SELECT avg(age)as agg 
                from Retail_Sales_Analysis
@@ -105,7 +105,7 @@ SELECT * from Retail_Sales_Analysis
  SELECT * from Retail_Sales_Analysis
             where total_sale > 1000```
 
-6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
+6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category**:
 ```sql
 SELECT 
                  category,
