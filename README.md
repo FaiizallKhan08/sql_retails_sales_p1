@@ -108,12 +108,12 @@ select avg(age)as agg
 
 6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
 ```sql
- select
-       category,
-        gender,
-         count(*) as total_trans
-         from Retail_Sales_Analysis
-          group by category,gender
+select
+category,
+ gender,
+ count(*) as total_trans
+from Retail_Sales_Analysis
+ group by category,gender
 ```
 
 7. **Write a SQL query to calculate the average sale for each month. Find out best selling month in each year**:
