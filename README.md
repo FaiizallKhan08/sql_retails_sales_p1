@@ -108,34 +108,33 @@ select avg(age)as agg
 
 6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
 ```sql
- select 
-                 category,
-                  gender,
-	                count(*) as total_trans
-            from Retail_Sales_Analysis
-            group by category,gender
+ select
+       category,
+        gender,
+         count(*) as total_trans
+         from Retail_Sales_Analysis
+          group by category,gender
 ```
 
 7. **Write a SQL query to calculate the average sale for each month. Find out best selling month in each year**:
 ```sql
  select 
-                   year(sale_date) as year,
-                   month(sale_date) as month,
-                   avg(total_sale) as avgsale
-                   from Retail_Sales_Analysis
-                   group by year(sale_date),month(sale_date)
-                   order by 1,3 desc
+        year(sale_date) as year,
+        month(sale_date) as month,
+        avg(total_sale) as avgsale
+        from Retail_Sales_Analysis
+        group by year(sale_date),month(sale_date)
+        order by 1,3 desc
 
 ---cte
 
 select * 
-            from (
-                     select 
-                          Year(sale_date) AS year,
-                          Month(sale_date) AS month,
-                          AVG(total_sale) AS avgsale,
-                          RANK() OVER (
-                              PARTITION BY YEAR(sale_date)
+        from (
+              select 
+               Year(sale_date) AS year,
+               Month(sale_date) AS month,
+               AVG(total_sale) AS avgsale,
+                 RANK() OVER (PARTITION BY YEAR(sale_date)
                               order by AVG(total_sale) DESC
                               ) AS rank
                          FROM Retail_Sales_Analysis
@@ -147,8 +146,8 @@ select *
 8. **Write a SQL query to find the top 5 customers based on the highest total sales **:
 ```sql
 select top 5
-                       customer_id,
-                       sum(total_sale) as totsale
+         customer_id,
+                     sum(total_sale) as totsale
                      From Retail_Sales_Analysis
                      Group by customer_id
                      Order by 2 desc
@@ -156,11 +155,12 @@ select top 5
 
 9. **Write a SQL query to find the number of unique customers who purchased items from each category.**:
 ```sql
-select  
-                     category,
-                     count(distinct customer_id) as c_unique_cus
-                     from Retail_Sales_Analysis
-                     group by category
+select
+   category,
+   count(distinct customer_id) as c_unique_cus
+   from Retail_Sales_Analysis
+    group by category
+                   
 ```
 
 10. **Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)**:
