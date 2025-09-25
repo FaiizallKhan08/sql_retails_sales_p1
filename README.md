@@ -72,14 +72,14 @@ The following SQL queries were developed to answer specific business questions:
 
 1. **Write a SQL query to retrieve all columns for sales made on '2022-11-05**:
 ```sql
-select * from Retail_Sales_Analysis
- where sale_date= '2022-11-05'
+SELECT * FROM Retail_Sales_Analysis
+ WHERE sale_date= '2022-11-05'
 ```
 
 2. **Write a SQL query to retrieve all transactions where the category is 'Clothing' and the quantity sold is more than 4 in the month of Nov-2022**:
 ```sql
- select * from Retail_Sales_Analysis
-	   where category='clothing' 
+ SELECT * FROM Retail_Sales_Analysis
+	   WHERE category='clothing' 
 	   and sale_date >='2022-11-01'
 	   and  sale_date < '2022-12-01'
 	   and quantity >= 4
@@ -87,79 +87,79 @@ select * from Retail_Sales_Analysis
 
 3. **Write a SQL query to calculate the total sales (total_sale) for each category.**:
 ```sql
-select category,sum(total_sale) as totalam, 
-                count(*) as totallorder
-                from Retail_Sales_Analysis
-                group by category
+SELECT category,sum(total_sale) as totalam, 
+                COUNT(*) as totallorder
+                FROM Retail_Sales_Analysis
+                GROUP BY by category
 ```
 
 4. **Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.**:
 ```sql
-select avg(age)as agg 
-               from Retail_Sales_Analysis
-               where category='Beauty'
+SELECT avg(age)as agg 
+               FROM Retail_Sales_Analysis
+               WHERE category='Beauty'
 ```
 
 5. **Write a SQL query to find all transactions where the total_sale is greater than 1000.**:
 ```sql
- select * from Retail_Sales_Analysis
-            where total_sale > 1000
+ SELECT * FROM Retail_Sales_Analysis
+            WHERE total_sale > 1000
 ```
 
 6. **Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.**:
 ```sql
-select
-category,
- gender,
- count(*) as total_trans
-from Retail_Sales_Analysis
- group by category,gender
+SELECT
+CATEGORY,
+GENDER,
+ COUNT(*) as total_trans
+FROM Retail_Sales_Analysis
+ GROUP BY by category,gender
 ```
 
 7. **Write a SQL query to calculate the average sale for each month. Find out best selling month in each year**:
 ```sql
- select 
-        year(sale_date) as year,
-        month(sale_date) as month,
-        avg(total_sale) as avgsale
-        from Retail_Sales_Analysis
-        group by year(sale_date),month(sale_date)
-        order by 1,3 desc
+ SELECT  
+        YEAR(sale_date) as year,
+        MONTH(sale_date) as month,
+        AVG(total_sale) as avgsale
+        FROM Retail_Sales_Analysis
+        GROUP by year(sale_date),month(sale_date)
+        ORDER BY 1,3 desc
 
 ---cte
 
-select * 
-        from (
-              select 
-               Year(sale_date) AS year,
-               Month(sale_date) AS month,
+SELECT * 
+        FROM (
+              SELECT 
+               YEAR(sale_date) AS year,
+               MONTH(sale_date) AS month,
                AVG(total_sale) AS avgsale,
                  RANK() OVER (PARTITION BY YEAR(sale_date)
                               order by AVG(total_sale) DESC
                               ) AS rank
                          FROM Retail_Sales_Analysis
-                         Group by Year(sale_date), MONTH(sale_date)
+                         GROUP by Year(sale_date), MONTH(sale_date)
                         ) AS t1
-                        Where rank = 1;
+                        WHERE rank = 1;
 ```
 
 8. **Write a SQL query to find the top 5 customers based on the highest total sales **:
 ```sql
-select top 5
+SELECT top 5
          customer_id,
-                     sum(total_sale) as totsale
-                     From Retail_Sales_Analysis
-                     Group by customer_id
-                     Order by 2 desc
+                     SUM(total_sale) as totsale
+                     FROM Retail_Sales_Analysis
+                     GROUP BY customer_id
+                     ORDER by 2 desc
 ```
 
 9. **Write a SQL query to find the number of unique customers who purchased items from each category.**:
 ```sql
-select
+SELECT
    category,
-   count(distinct customer_id) as c_unique_cus
-   from Retail_Sales_Analysis
-    group by category
+   COUNT(distinct customer_id) as c_unique_cus
+   FROM Retail_Sales_Analysis
+    GROUP by category
                    
 ```
 
@@ -167,7 +167,7 @@ select
 ```sql
 
 	With hourly_sale as (
-    Select *,
+    SELECT *,
         CASE
             WHEN datepart(HOUR, sale_time) < 12 THEN 'Morning'
             WHEN datepart(HOUR, sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
@@ -177,7 +177,7 @@ select
 			FROM Retail_Sales_Analysis)
                 SELECT 
                       shift,
-                 Count(*) AS total_orders    
+                 COUNT(*) AS total_orders    
                  FROM hourly_sale
                  GROUP BY shift;
 ```
